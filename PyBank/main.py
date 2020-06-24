@@ -36,10 +36,12 @@ with open(csvpath) as csvfile:
         monthly_changes_pl = current_pl - previous_pl  #Calcualte Profit/Losses monthly changes
         previous_pl =  current_pl
         #Calculate average of the monthly changes in Profit/Losses
-        if(count_months != 1 and monthly_changes_pl !=0): #how to calculate total_pl_change eliminating monthly_changes_pl results 0???????
+        if(count_months != 1): #how to calculate total_pl_change eliminating monthly_changes_pl results 0???????    #and monthly_changes_pl !=0
             pl_changes.append(monthly_changes_pl)  
             total_pl_change = total_pl_change + monthly_changes_pl
-            average_change = round(total_pl_change/count_months,2)   
+            #average_change = round(total_pl_change/count_months,2) 
+            average_change = round(total_pl_change/len(pl_changes),2)
+                         #print(len(pl_changes)) 
         #Greatest Increase
         if(monthly_changes_pl > greatest_increase):
             greatest_increase = monthly_changes_pl

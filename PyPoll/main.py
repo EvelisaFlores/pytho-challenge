@@ -12,7 +12,8 @@ total_votes = 0
 #candidates list and candidates votes
 candidates_list = []
 candidate_votes = {}
-
+#Percentages
+votes_percentage = 0
 #Winner
 winner_candidate = ""
 winner_count = 0
@@ -51,13 +52,13 @@ with open(csvpath) as csvfile:
     #Percentages
     for candidate in candidate_votes:
          votes = candidate_votes.get(candidate)
-         vote_percentage = float(votes)/float(total_votes) * 100
-         result = f"{candidate}:{vote_percentage:.3f}% ({votes})\n"
-         print(result)
+         votes_percentage = float(votes)/float(total_votes) * 100
+         candidate_result = f"{candidate}:{votes_percentage:.3f}% ({votes})\n"   ##it didn't worked candidate_result = f"{candidate}:str(round({votes_percentage})) + "%" + ({votes})\n" 
+         print(candidate_result)
          with open(textpath, 'a') as txtfile:
-                txtfile.write(result)
+                txtfile.write(candidate_result)
          
-         
+         #winner
          if(votes> winner_count):
            winner_count = votes
            winner_candidate = candidate
